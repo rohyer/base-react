@@ -1,13 +1,16 @@
 import '../Layouts.css';
 import './Header.css';
+import logo from '../../assets/logo.png';
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
-const headers = { 'Content-type': 'application/json' }
-const loginData = {
-  identifier: 'guilhermerl.dev@gmail.com',
-  password: '2}{U0)xn|4L5d9'
-};
+const headers = {
+  'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN
+}
+// const loginData = {
+//   identifier: 'guilhermerl.dev@gmail.com',
+//   password: '2}{U0)xn|4L5d9'
+// };
 
 const Header = () => {
   const [pages, setPages] = useState([]);
@@ -15,11 +18,7 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch('http://localhost:1337/api/paginas?fields[0]=innerTitle&fields[1]=url', {
-        method: 'GET',
-        headers: {
-          'Authorization': 'Token ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc1OTkzOTM3LCJleHAiOjE2Nzg1ODU5Mzd9.pTzi55E9lVXK2wN1K2kDAxjDf1H7g0kv2MhBwEjq5eU',
-          'Content-type': 'application/json'
-        }
+        headers
       });
       const res = await data.json();
       setPages(res.data);
@@ -28,15 +27,13 @@ const Header = () => {
     fetchData();
   }, []);
 
-  console.log(process.env.JWT_API_TOKEN);
-
   return (
     <header>
       <div className="container-lg">
         <div className="items">
           <div className="logo">
             <a href={window.location.origin}>
-              {process.env.JWT_API_TOKEN}
+              <img src={logo} alt="" />
             </a>
           </div>
 
