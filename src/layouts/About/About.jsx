@@ -41,7 +41,7 @@ const About = () => {
             {getLink()}
           </div>
           <div className="img">
-            <img src={`${process.env.REACT_APP_ORIGIN_URL}${aboutImage}`} alt="Imagem" />
+            <img src={`${process.env.REACT_APP_API_URL}${aboutImage}`} alt="Imagem" />
           </div>
         </div>
       </div>
