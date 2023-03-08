@@ -37,8 +37,6 @@ const Banner = () => {
     }
   }
 
-  console.log(banners);
-
   return (
     <section className="banner">
       <div className="container-md">
@@ -56,7 +54,7 @@ const Banner = () => {
             banners.map((currentValue, index) => (
               <SwiperSlide key={index} className="card">
                 <div className="image">
-                  <img src={`${process.env.REACT_APP_ORIGIN_URL}${currentValue.attributes.homeImage.data.attributes.url}`} alt="" />
+                  <img src={`${process.env.REACT_APP_API_URL}${currentValue.attributes.homeImage.data.attributes.url}`} alt="" />
                 </div>
                 <div className="content">
                   <h2>{currentValue.attributes.homeTitle}</h2>
