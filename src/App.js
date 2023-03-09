@@ -7,6 +7,8 @@ import Banner from './layouts/Banner/Banner';
 import About from './layouts/About/About';
 import News from './layouts/News/News';
 import Partners from './layouts/Partners/Partners';
+import Team from './layouts/Team/Team';
+import Cta from './layouts/Cta/Cta';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <About />
       <News />
       <Partners />
+      <Team />
+      <Cta />
       <Footer />
     </div>
   );
