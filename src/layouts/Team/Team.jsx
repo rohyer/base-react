@@ -27,8 +27,6 @@ const Team = () => {
     fetchPostsData();
   }, []);
 
-  console.log(teamPosts);
-
   const getLink = () => {
     const link = team.homeButtonLink;
 
@@ -53,7 +51,7 @@ const Team = () => {
           <div className="right-content">
             {
               teamPosts.slice(0, 3).map((item, index) => (
-                <a key={index} href={`${process.env.REACT_APP_ORIGIN_URL}/${item.attributes.url}`} className="post">
+                <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post">
                   <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem da equipe" />
                   <div className="post-content">
                     <p className="post-name">{item.attributes.cardName}</p>
