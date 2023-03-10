@@ -17,7 +17,7 @@ const Header = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch('http://localhost:1337/api/paginas?fields[0]=innerTitle&fields[1]=url', {
+      const data = await fetch('http://localhost:1337/api/paginas?fields[0]=menuTitle&fields[1]=slug&fields[2]=homeButtonLink&fields[3]=homeTab', {
         headers
       });
       const res = await data.json();
@@ -26,6 +26,18 @@ const Header = () => {
 
     fetchData();
   }, []);
+
+  const getLink = (attributes) => {
+    const link = attributes.homeButtonLink;
+
+    if (link) {
+      const target = attributes.homeTab ? '_blank' : '_self';
+      
+      return <Link to={link} target={target}>{attributes.menuTitle}</Link>
+    } else {
+      return <Link to={attributes.slug} target='_self'>{attributes.menuTitle}</Link>
+    }
+  }
 
   return (
     <header>
@@ -38,9 +50,9 @@ const Header = () => {
           </div>
 
           <ul>
-            {pages.map(({ id, attributes }) => (
+            {pages.map(({ attributes, id }) => (
               <li key={id}>
-                <Link to={`/${attributes.url}`}>{attributes.innerTitle}</Link>
+                {getLink(attributes)}
               </li>
             ) )}
           </ul>
