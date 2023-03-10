@@ -29,7 +29,7 @@ const About = () => {
 
       return <a href={link} target={targetLink}>{buttonTitle}</a>
     } else {
-      return <a href={aboutContent.slug} target='_self'>{buttonTitle}</a>
+      if (buttonTitle) return <a href={aboutContent.slug} target='_self'>{buttonTitle}</a>
     }
   }
 
