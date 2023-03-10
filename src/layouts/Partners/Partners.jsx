@@ -30,12 +30,40 @@ const Partners = () => {
 
   const getLink = () => {
     const link = partners.homeButtonLink;
+    const buttonText = partners.homeButtonText;
 
     if (link) {
-      const buttonText = partners.homeButtonText;
       const buttonTarget = partners.homeTab ? '_blank' : '_self';
 
       return <a href={link} target={buttonTarget}>{buttonText}</a>
+    } else {
+      if (buttonText) return <a href={partners.slug} target='_self'>{buttonText}</a>
+    }
+  }
+
+  const getPostCard = (attributes) => {
+    return (
+      <img src={`${process.env.REACT_APP_API_URL}${attributes.cardImage.data.attributes.url}`} alt="Imagem" />
+    )
+  }
+
+  const getPostLink = (attributes, id) => {
+    const link = attributes.link;
+
+    if (link) {
+      const targetLink = attributes.tab ? '_blank' : '_self';
+
+      return (
+        <a key={id} href={link} target={targetLink} className="post">
+          {getPostCard(attributes)}
+        </a>
+      )
+    } else {
+      return (
+        <a key={id} href={attributes.slug} target='_self' className="post">
+          {getPostCard(attributes)}
+        </a>
+      )
     }
   }
 
@@ -49,11 +77,7 @@ const Partners = () => {
 
         <div className="posts">
           {
-            partnersPosts.map((item, index) => (
-              <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post">
-                <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem" />
-              </a>
-            ))
+            partnersPosts.map(({attributes, id}) => getPostLink(attributes, id))
           }
         </div>
 
