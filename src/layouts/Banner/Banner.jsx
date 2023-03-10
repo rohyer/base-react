@@ -26,14 +26,16 @@ const Banner = () => {
     fetchData();
   }, []);
 
-  const getLink = (id) => {
-    const link = banners[id].attributes.homeButtonLink;
+  const getLink = (attributes) => {
+    const link = attributes.homeButtonLink;
+    const buttonTitle = attributes.homeButtonText;
 
     if (link) {
-      const buttonTitle = banners[id].attributes.homeButtonText;
-      const targetLink = banners[id].attributes.homeTab ? '_blank' : '_self';
+      const targetLink = attributes.homeTab ? '_blank' : '_self';
 
-      return <a href={`${link} `} target={targetLink}>{buttonTitle}</a>
+      return <a href={link} target={targetLink}>{buttonTitle}</a>
+    } else {
+      return <a href={attributes.slug} target='_self'>{buttonTitle}</a>
     }
   }
 
@@ -51,15 +53,15 @@ const Banner = () => {
           onSwiper={(swiper) => console.log(swiper)}
         >
           {
-            banners.map((currentValue, index) => (
-              <SwiperSlide key={index} className="card">
+            banners.map(({attributes, id}) => (
+              <SwiperSlide key={id} className="card">
                 <div className="image">
-                  <img src={`${process.env.REACT_APP_API_URL}${currentValue.attributes.homeImage.data.attributes.url}`} alt="" />
+                  <img src={`${process.env.REACT_APP_API_URL}${attributes.homeImage.data.attributes.url}`} alt="" />
                 </div>
                 <div className="content">
-                  <h2>{currentValue.attributes.homeTitle}</h2>
-                  <p>{currentValue.attributes.homeContent}</p>
-                  {getLink(index)}
+                  <h2>{attributes.homeTitle}</h2>
+                  <p>{attributes.homeContent}</p>
+                  {getLink(attributes)}
                 </div>
               </SwiperSlide>
             ))
