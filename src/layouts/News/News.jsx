@@ -30,14 +30,14 @@ const News = () => {
 
   const getLink = () => {
     const link = news.homeButtonLink;
-    const buttonTitle = news.homeButtonText;
+    const buttonText = news.homeButtonText;
 
     if (link) {
       const targetLink = news.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={targetLink}>{buttonTitle}</a>
+      return <a href={link} target={targetLink}>{buttonText}</a>
     } else {
-      if (buttonTitle) return <a href={news.slug} target='_self'>{buttonTitle}</a>
+      if (buttonText) return <a href={news.slug} target='_self'>{buttonText}</a>
     }
   }
 

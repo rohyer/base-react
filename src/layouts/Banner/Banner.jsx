@@ -28,14 +28,14 @@ const Banner = () => {
 
   const getLink = (attributes) => {
     const link = attributes.homeButtonLink;
-    const buttonTitle = attributes.homeButtonText;
+    const buttonText = attributes.homeButtonText;
 
     if (link) {
       const targetLink = attributes.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={targetLink}>{buttonTitle}</a>
+      return <a href={link} target={targetLink}>{buttonText}</a>
     } else {
-      if (buttonTitle) return <a href={attributes.slug} target='_self'>{buttonTitle}</a>
+      if (buttonText) return <a href={attributes.slug} target='_self'>{buttonText}</a>
     }
   }
 
