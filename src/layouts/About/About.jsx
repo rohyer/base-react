@@ -22,12 +22,14 @@ const About = () => {
 
   const getLink = () => {
     const link = aboutContent.homeButtonLink;
+    const buttonTitle = aboutContent.homeButtonText;
 
     if (link) {
-      const buttonTitle = aboutContent.homeButtonText;
       const targetLink = aboutContent.homeTab ? '_blank' : '_self';
 
-      return <a href={`${link}`} target={targetLink}>{buttonTitle}</a>
+      return <a href={link} target={targetLink}>{buttonTitle}</a>
+    } else {
+      return <a href={aboutContent.slug} target='_self'>{buttonTitle}</a>
     }
   }
 
