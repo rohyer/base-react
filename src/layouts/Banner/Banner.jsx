@@ -35,7 +35,7 @@ const Banner = () => {
 
       return <a href={link} target={targetLink}>{buttonTitle}</a>
     } else {
-      return <a href={attributes.slug} target='_self'>{buttonTitle}</a>
+      if (buttonTitle) return <a href={attributes.slug} target='_self'>{buttonTitle}</a>
     }
   }
 
