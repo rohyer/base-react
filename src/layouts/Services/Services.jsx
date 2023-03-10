@@ -64,9 +64,22 @@ const News = () => {
             modules={[Navigation, Pagination, Autoplay]}
             navigation
             autoplay
-            spaceBetween={15}
-            slidesPerView={4}
+            spaceBetween={30}
             onSwiper={(swiper) => console.log(swiper)}
+            breakpoints={{
+              0: {
+                slidesPerView: 1
+              },
+              576: {
+                slidesPerView: 2
+              },
+              992: {
+                slidesPerView: 3
+              },
+              1200: {
+                slidesPerView: 4
+              }
+            }}
           >
             {
               servicesPosts.map((item, index) => (

@@ -37,16 +37,9 @@
   color: #333333;
 }
 
-.services .posts {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .services .posts .post {
   display: flex;
   flex-direction: column;
-  width: 250px;
   height: auto;
   background-color: #FFFFFF;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
@@ -54,6 +47,10 @@
   margin-top: 15px;
   margin-bottom: 15px;
   transition: all .25s;
+}
+
+.services .posts .swiper {
+  padding: 25px;
 }
 
 .services .posts .post:hover {
@@ -94,4 +91,10 @@
   border-radius: 3px;
   padding: 8px 20px;
   margin: 10px 0px;
+}
+
+@media (max-width: 575px) {
+  .services .posts .swiper {
+    width: 290px;
+  }
 }
