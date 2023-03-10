@@ -30,12 +30,45 @@ const News = () => {
 
   const getLink = () => {
     const link = news.homeButtonLink;
+    const buttonTitle = news.homeButtonText;
 
     if (link) {
-      const buttonTitle = news.homeButtonText;
       const targetLink = news.homeTab ? '_blank' : '_self';
 
-      return <a href={`${link}`} target={targetLink}>{buttonTitle}</a>
+      return <a href={link} target={targetLink}>{buttonTitle}</a>
+    } else {
+      if (buttonTitle) return <a href={news.slug} target='_self'>{buttonTitle}</a>
+    }
+  }
+
+  const getPostCard = (attributes) => {
+    return (
+      <>
+        <img src={`${process.env.REACT_APP_API_URL}${attributes.cardImage.data.attributes.url}`} alt="Imagem" />
+        <div className="post-content">
+          <p>{attributes.cardTitle}</p>
+        </div>
+      </>
+    )
+  }
+
+  const getPostLink = (attributes, id) => {
+    const link = attributes.link;
+
+    if (link) {
+      const targetLink = attributes.tab ? '_blank' : '_self';
+
+      return (
+        <a key={id} href={link} target={targetLink} className="post">
+          {getPostCard(attributes)}
+        </a>
+      )
+    } else {
+      return (
+        <a key={id} href={attributes.slug} target='_self' className="post">
+          {getPostCard(attributes)}
+        </a>
+      )
     }
   }
 
@@ -48,16 +81,7 @@ const News = () => {
         </div>
 
         <div className="posts">
-        {
-          newsPosts.map((item, index) => (
-            <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post">
-              <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem" />
-              <div className="post-content">
-                <p>{item.attributes.cardTitle}</p>
-              </div>
-            </a>
-          ))
-        }
+        {newsPosts.map(({attributes, id}) => getPostLink(attributes, id))}
         </div>
         
         <div className="bottom-content">
