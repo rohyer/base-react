@@ -43,18 +43,18 @@ const Footer = () => {
           </div>
           <div className="footer-info">
             <p>{pages.siteTitle}</p>
-            <a href={pages.addressLink} target="_blank" rel="noopener noreferer">{pages.addressText}</a>
+            <a href={pages.addressLink} target="_blank" rel="noopener noreferrer">{pages.addressText}</a>
           </div>
           <div className="footer-contact">
             <div className="footer-numbers">
-              <a href={pages.whatsappLink} target="_blank" rel="noopener noreferer"><i className="fa-brands fa-whatsapp"></i> {pages.whatsappText}</a>
-              <a href={`tel:${pages.telephone}`} target="_blank" rel="noopener noreferer"><i className="fa-solid fa-phone"></i> {pages.telephone}</a>
+              <a href={pages.whatsappLink} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-whatsapp"></i> {pages.whatsappText}</a>
+              <a href={`tel:${pages.telephone}`} target="_blank" rel="noopener noreferrer"><i className="fa-solid fa-phone"></i> {pages.telephone}</a>
             </div>
             <div className="footer-social-network">
-              <a href={pages.facebook} target="_blank" rel="noopener noreferer"><i className="fa-brands fa-facebook"></i></a>
-              <a href={pages.instagram} target="_blank" rel="noopener noreferer"><i className="fa-brands fa-instagram"></i></a>
-              <a href={pages.youtube} target="_blank" rel="noopener noreferer"><i className="fa-brands fa-youtube"></i></a>
-              <a href={pages.linkedin} target="_blank" rel="noopener noreferer"><i className="fa-brands fa-linkedin"></i></a>
+              <a href={pages.facebook} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-facebook"></i></a>
+              <a href={pages.instagram} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-instagram"></i></a>
+              <a href={pages.youtube} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-youtube"></i></a>
+              <a href={pages.linkedin} target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-linkedin"></i></a>
             </div>
           </div>
         </div>
