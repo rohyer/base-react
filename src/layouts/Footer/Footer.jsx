@@ -3,7 +3,7 @@ import logo from '../../assets/logo.png';
 import { useState, useEffect } from 'react'
 
 const headers = {
-  'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN
+  'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
 };
 
 const Footer = () => {

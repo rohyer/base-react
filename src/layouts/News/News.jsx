@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import './News.css';
 
-const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN}
+const headers = {
+  'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
+}
 
 const News = () => {
   const [news, setNews] = useState({});

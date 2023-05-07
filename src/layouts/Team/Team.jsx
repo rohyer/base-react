@@ -1,7 +1,9 @@
 import './Team.css';
 import { useState, useEffect } from 'react';
 
-const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN }
+const headers = {
+  'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
+}
 
 const Team = () => {
   const [team, setTeam] = useState({});

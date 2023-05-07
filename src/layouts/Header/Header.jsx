@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 const headers = {
-  'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN
+  'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
 }
 // const loginData = {
 //   identifier: 'guilhermerl.dev@gmail.com',
-//   password: '2}{U0)xn|4L5d9'
+//   password: 'Vg7gzkXf6y!kqDb'
 // };
 
 const Header = () => {

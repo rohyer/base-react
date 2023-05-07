@@ -10,7 +10,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 
-const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN }
+const headers = {
+  'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
+}
 
 const Banner = () => {
   const [banners, setBanners] = useState([]);

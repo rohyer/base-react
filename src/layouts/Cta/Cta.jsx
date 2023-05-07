@@ -1,7 +1,7 @@
 import './Cta.css';
 import { useState, useEffect } from 'react';
 
-const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_JWT_API_TOKEN }
+const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN }
 
 const Cta = () => {
   const [cta, setCta] = useState([]);
@@ -27,7 +27,7 @@ const Cta = () => {
         </div>
 
         <div className="bottom-content">
-          <a href={`${process.env.REACT_APP_ORIGIN_URL}/${cta.url}`} target={cta.homeTab ? '_balnk' : '_self'}>Saiba mais</a>
+          <a href={`${process.env.REACT_APP_ORIGIN_URL}/${cta.pageID}`} target={cta.homeTab ? '_balnk' : '_self'}>Saiba mais</a>
         </div>
       </div>
     </div>
