@@ -51,7 +51,7 @@ const Banner = () => {
           pagination={{ clickable: true }}
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={() => console.log('slide change')}
+          // onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
         >
           {

@@ -32,8 +32,6 @@ const Footer = () => {
     fetchData();
   }, []);
 
-  console.log(pages);
-
   return (
     <footer>
       <div className="container-md">

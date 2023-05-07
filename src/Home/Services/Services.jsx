@@ -39,8 +39,6 @@ const News = () => {
     fetchPostsData();
   }, []);
 
-  console.log(servicesPosts);
-
   const getLink = () => {
     const link = services.homeButtonLink;
 
