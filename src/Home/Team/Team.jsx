@@ -1,5 +1,6 @@
 import './Team.css';
 import { useState, useEffect } from 'react';
+import Container from '@mui/material/Container';
 
 const headers = {
   'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
@@ -42,7 +43,7 @@ const Team = () => {
 
   return (
     <div className="team">
-      <div className="container-md">
+      <Container fixed>
         <div className="content">
           <div className="left-content">
             <h2>{team.homeTitle}</h2>
@@ -53,7 +54,7 @@ const Team = () => {
           <div className="right-content">
             {
               teamPosts.slice(0, 3).map((item, index) => (
-                <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post">
+                <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post" rel="noopener noreferrer">
                   <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem da equipe" />
                   <div className="post-content">
                     <p className="post-name">{item.attributes.cardName}</p>
@@ -64,7 +65,7 @@ const Team = () => {
             }
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }

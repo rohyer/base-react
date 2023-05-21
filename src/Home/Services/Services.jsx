@@ -1,6 +1,7 @@
 import './Services.css';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Container from '@mui/material/Container';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 
 // Import Swiper styles
@@ -52,7 +53,7 @@ const News = () => {
 
   return (
     <div className="services">
-      <div className="container-md">
+      <Container fixed>
         <div className="top-content">
           <h2>{services.homeTitle}</h2>
           <p>{services.homeContent}</p>
@@ -84,7 +85,7 @@ const News = () => {
             {
               servicesPosts.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post">
+                  <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post" rel="noopener noreferrer">
                     <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem" />
                     <div className="post-content">
                       <p>{item.attributes.cardTitle}</p>
@@ -99,7 +100,7 @@ const News = () => {
         <div className="bottom-content">
           {getLink()}
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
