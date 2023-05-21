@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Container, Button } from '@mui/material';
 import './News.css';
 
 const headers = {
@@ -37,9 +38,9 @@ const News = () => {
     if (link) {
       const targetLink = news.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={targetLink}>{buttonText}</a>
+      return <Button href={link} target={targetLink}>{buttonText}</Button>
     } else {
-      if (buttonText) return <a href={news.slug} target='_self'>{buttonText}</a>
+      if (buttonText) return <Button href={news.slug} target='_self'>{buttonText}</Button>
     }
   }
 
@@ -76,7 +77,7 @@ const News = () => {
 
   return (
     <div className="news">
-      <div className="container-md">
+      <Container fixed>
         <div className="top-content">
           <h2>{news.homeTitle}</h2>
           <p>{news.homeContent}</p>
@@ -89,7 +90,7 @@ const News = () => {
         <div className="bottom-content">
           {getLink()}
         </div>
-      </div>
+      </Container>
     </div>
   )
 }

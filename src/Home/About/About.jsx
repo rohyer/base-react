@@ -1,5 +1,6 @@
 import './About.css';
 import { useState, useEffect } from 'react';
+import { Container, Button } from '@mui/material';
 
 const headers = {
   'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
@@ -29,15 +30,15 @@ const About = () => {
     if (link) {
       const targetLink = aboutContent.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={targetLink}>{buttonText}</a>
+      return <Button href={link} target={targetLink}>{buttonText}</Button>
     } else {
-      if (buttonText) return <a href={aboutContent.slug} target='_self'>{buttonText}</a>
+      if (buttonText) return <Button href={aboutContent.slug} target='_self'>{buttonText}</Button>
     }
   }
 
   return (
     <section className='about'>
-      <div className="container-md">
+      <Container fixed>
         <div className="content">
           <div className="text">
             <h2>{aboutContent.homeTitle}</h2>
@@ -48,7 +49,7 @@ const About = () => {
             <img src={`${process.env.REACT_APP_API_URL}${aboutImage}`} alt="Imagem" />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

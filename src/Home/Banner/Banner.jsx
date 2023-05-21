@@ -1,6 +1,7 @@
 import './Banner.css';
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Container, Button } from '@mui/material';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 
 // Import Swiper styles
@@ -35,15 +36,15 @@ const Banner = () => {
     if (link) {
       const targetLink = attributes.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={targetLink}>{buttonText}</a>
+      return <Button href={link} target={targetLink}>{buttonText}</Button>
     } else {
-      if (buttonText) return <a href={attributes.slug} target='_self'>{buttonText}</a>
+      if (buttonText) return <Button href={attributes.slug} target='_self'>{buttonText}</Button>
     }
   }
 
   return (
     <section className="banner">
-      <div className="container-md">
+      <Container fixed>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
@@ -69,7 +70,7 @@ const Banner = () => {
             ))
           }
         </Swiper>
-      </div>
+      </Container>
     </section>
   )
 }

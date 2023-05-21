@@ -1,5 +1,6 @@
 import './Cta.css';
 import { useState, useEffect } from 'react';
+import { Container, Button} from '@mui/material';
 
 const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN }
 
@@ -20,16 +21,16 @@ const Cta = () => {
 
   return (
     <div className='cta'>
-      <div className="container-md">
+      <Container fixed>
         <div className="top-content">
           <h2>{cta.homeTitle}</h2>
           <p>{cta.homeContent}</p>
         </div>
 
         <div className="bottom-content">
-          <a href={`${process.env.REACT_APP_ORIGIN_URL}/${cta.pageID}`} target={cta.homeTab ? '_balnk' : '_self'}>Saiba mais</a>
+          <Button href={`${process.env.REACT_APP_ORIGIN_URL}/${cta.pageID}`} target={cta.homeTab ? '_balnk' : '_self'}>Saiba mais</Button>
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
