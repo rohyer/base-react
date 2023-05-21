@@ -10,6 +10,7 @@ header {
 .items {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -47,16 +48,18 @@ header {
 }
 @media (max-width: 991px) {
   header {
-    height: 50px;
+    height: 60px;
   }
 
-  .logo {
-    height: 50px;
+  .logo, .logo a {
+    height: 45px;
   }
   .logo img {
-    height: 40px;
+    height: 45px;
   }
-
+  .items {
+    height: 60px;
+  }
   .items ul {
     display: none;
   }
