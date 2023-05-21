@@ -1,5 +1,6 @@
 import './Partners.css';
 import { useState, useEffect } from 'react';
+import { Container, Button } from '@mui/material';
 
 const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN }
 
@@ -35,9 +36,9 @@ const Partners = () => {
     if (link) {
       const buttonTarget = partners.homeTab ? '_blank' : '_self';
 
-      return <a href={link} target={buttonTarget}>{buttonText}</a>
+      return <Button href={link} target={buttonTarget}>{buttonText}</Button>
     } else {
-      if (buttonText) return <a href={partners.slug} target='_self'>{buttonText}</a>
+      if (buttonText) return <Button href={partners.slug} target='_self'>{buttonText}</Button>
     }
   }
 
@@ -69,7 +70,7 @@ const Partners = () => {
 
   return (
     <div className="partners">
-      <div className="container-md">
+      <Container fixed>
         <div className="top-content">
           <h2>{partners.homeTitle}</h2>
           <p>{partners.excerpt}</p>
@@ -84,7 +85,7 @@ const Partners = () => {
         <div className="bottom-content">
           {getLink()}
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
