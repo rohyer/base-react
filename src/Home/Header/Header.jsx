@@ -1,8 +1,12 @@
 import '../Home.css';
 import './Header.css';
 import logo from '../../assets/logo.png';
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { Container, Box, Drawer, Button, List, Divider, ListItem, IconButton } from '@mui/material';
+import { Menu, Close } from '@mui/icons-material';
+
 
 const headers = {
   'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
@@ -14,6 +18,35 @@ const headers = {
 
 const Header = () => {
   const [pages, setPages] = useState([]);
+  const [state, setState] = React.useState({
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {pages.map(({ attributes, id }) => (
+          <ListItem key={id} disablePadding>
+            {getLinkResponsive(attributes)}
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+    </Box>
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +60,7 @@ const Header = () => {
     fetchData();
   }, []);
 
-  const getLink = (attributes) => {
+  const getLinkDesktop = (attributes) => {
     const link = attributes.homeButtonLink;
 
     if (link) {
@@ -39,9 +72,21 @@ const Header = () => {
     }
   }
 
+  const getLinkResponsive = (attributes) => {
+    const link = attributes.homeButtonLink;
+
+    if (link) {
+      const target = attributes.homeTab ? '_blank' : '_self';
+      
+      return <Link className='responsive-navbar-link' to={link} target={target}>{attributes.menuTitle}</Link>
+    } else {
+      return <Link className='responsive-navbar-link' to={attributes.slug} target='_self'>{attributes.menuTitle}</Link>
+    }
+  }
+
   return (
     <header>
-      <div className="container-lg">
+      <Container fixed>
         <div className="items">
           <div className="logo">
             <a href={window.location.origin}>
@@ -52,14 +97,38 @@ const Header = () => {
           <ul>
             {pages.map(({ attributes, id }) => (
               <li key={id}>
-                {getLink(attributes)}
+                {getLinkDesktop(attributes)}
               </li>
             ) )}
           </ul>
 
+          <Button className='header-menu-button' onClick={toggleDrawer('right', true)}>
+            <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ pr: 0 }}
+              >
+              <Menu />
+            </IconButton>
+          </Button>
+
           <Outlet />
         </div>
-      </div>
+      </Container>
+
+      <Drawer
+        anchor='right'
+        open={state['right']}
+        onClose={toggleDrawer('right', false)}
+      >
+        <Close
+          className='responsive-menu-close'
+          onClick={toggleDrawer('right', false)}
+        />
+        {list('right')}
+      </Drawer>
     </header>
   )
 }

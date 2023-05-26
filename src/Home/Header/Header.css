@@ -45,6 +45,10 @@ header {
     justify-content: flex-end;
     align-items: center;
   }
+
+  .header-menu-button {
+    display: none !important;
+  }
 }
 @media (max-width: 991px) {
   header {
@@ -63,4 +67,23 @@ header {
   .items ul {
     display: none;
   }
+}
+
+.responsive-header-links:active {
+  color: inherit;
+}
+        
+.responsive-navbar-link {
+  font-size: 16px;
+  font-size: 400;
+  font-style: normal;
+  color: #333333;
+  width: 100%;
+  line-height: 40px;
+  padding: 0px 10px;
+}
+
+.responsive-menu-close {
+  padding: 5px;
+  margin-top: 10px;
 }
