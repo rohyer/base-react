@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import { Container, Button } from '@mui/material';
 import './News.css';
 
@@ -38,9 +39,19 @@ const News = () => {
     if (link) {
       const targetLink = news.homeTab ? '_blank' : '_self';
 
-      return <Button href={link} target={targetLink}>{buttonText}</Button>
+      return (
+        <Button>
+          <Link to={link} target={targetLink}>{buttonText}</Link>
+        </Button>
+      )
     } else {
-      if (buttonText) return <Button href={news.slug} target='_self'>{buttonText}</Button>
+      if (buttonText) {
+        return (
+          <Button>
+            <Link to={news.slug} target='_self'>{buttonText}</Link>
+          </Button>
+        )
+      }
     }
   }
 
@@ -56,21 +67,21 @@ const News = () => {
   }
 
   const getPostLink = (attributes, id) => {
-    const link = attributes.link;
+    const slug = attributes.slug;
+    const content = attributes.innerContent;
 
-    if (link) {
-      const targetLink = attributes.tab ? '_blank' : '_self';
+    if (content) {
 
       return (
-        <a key={id} href={link} target={targetLink} className="post">
+        <Link key={id} to={`/noticias/${slug}`}  className="post">
           {getPostCard(attributes)}
-        </a>
+        </Link>
       )
     } else {
       return (
-        <a key={id} href={attributes.slug} target='_self' className="post">
+        <div key={id} className="post">
           {getPostCard(attributes)}
-        </a>
+        </div>
       )
     }
   }

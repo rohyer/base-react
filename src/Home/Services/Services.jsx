@@ -1,6 +1,7 @@
 import './Services.css';
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 
@@ -85,12 +86,12 @@ const News = () => {
             {
               servicesPosts.map((item, index) => (
                 <SwiperSlide key={index}>
-                  <a key={index} href={item.attributes.link} target={item.attributes.tab ? '_blank' : '_self'} className="post" rel="noopener noreferrer">
+                  <Link key={index} to={`servicos/${item.attributes.slug}`} className="post">
                     <img src={`${process.env.REACT_APP_API_URL}${item.attributes.cardImage.data.attributes.url}`} alt="Imagem" />
                     <div className="post-content">
                       <p>{item.attributes.cardTitle}</p>
                     </div>
-                  </a>
+                  </Link>
                 </SwiperSlide>
               ))
             }

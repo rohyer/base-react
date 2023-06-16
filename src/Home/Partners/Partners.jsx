@@ -1,5 +1,6 @@
 import './Partners.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Button } from '@mui/material';
 
 const headers = { 'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN }
@@ -49,21 +50,19 @@ const Partners = () => {
   }
 
   const getPostLink = (attributes, id) => {
-    const link = attributes.link;
+    const content = attributes.innerContent;
 
-    if (link) {
-      const targetLink = attributes.tab ? '_blank' : '_self';
-
+    if (content) {
       return (
-        <a key={id} href={link} target={targetLink} className="post">
+        <Link key={id} to={`${window.location.origin}/parceiros/${attributes.slug}`} target='_self' className="post">
           {getPostCard(attributes)}
-        </a>
+        </Link>
       )
     } else {
       return (
-        <a key={id} href={attributes.slug} target='_self' className="post">
+        <div key={id} className="post">
           {getPostCard(attributes)}
-        </a>
+        </div>
       )
     }
   }
