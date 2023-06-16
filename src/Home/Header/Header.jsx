@@ -3,6 +3,7 @@ import './Header.css';
 import logo from '../../assets/logo.png';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 import { Link, Outlet } from 'react-router-dom';
 import { Container, Box, Drawer, Button, List, Divider, ListItem, IconButton } from '@mui/material';
 import { Menu, Close } from '@mui/icons-material';
@@ -18,9 +19,25 @@ const headers = {
 
 const Header = () => {
   const [pages, setPages] = useState([]);
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     right: false,
   });
+
+  const fetchData = async (url) => {
+    const data = await fetch(url, {
+      headers
+    });
+    const res = await data.json();
+    setPages(res.data);
+    return res;
+  }
+
+  const { data, error, isLoading } = useSWR(
+    'http://localhost:1337/api/paginas?fields[0]=menuTitle&fields[1]=slug&fields[2]=homeButtonLink&fields[3]=homeTab',
+    fetchData
+  );
+
+  console.log(pages);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,18 +64,6 @@ const Header = () => {
       <Divider />
     </Box>
   );
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch('http://localhost:1337/api/paginas?fields[0]=menuTitle&fields[1]=slug&fields[2]=homeButtonLink&fields[3]=homeTab', {
-        headers
-      });
-      const res = await data.json();
-      setPages(res.data);
-    }
-
-    fetchData();
-  }, []);
 
   const getLinkDesktop = (attributes) => {
     const link = attributes.homeButtonLink;
@@ -113,8 +118,6 @@ const Header = () => {
               <Menu />
             </IconButton>
           </Button>
-
-          <Outlet />
         </div>
       </Container>
 
