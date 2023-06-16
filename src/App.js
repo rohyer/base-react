@@ -5,7 +5,7 @@ import Home from './Home/Home';
 import Page from './Pages/Page/Page';
 import PostsPage from './Pages/PostsPage/PostsPage';
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 
 const headers = {
   'Authorization': 'Bearer ' + process.env.REACT_APP_TOKEN
@@ -24,11 +24,12 @@ function App() {
     }
 
     fetchData();
+
+    window.scrollTo(0, 0)
   }, []);
 
   const getPages = () => {
     const page = routes.filter(route => !route.attributes.pagePosts);
-    console.log(page);
     return page;
   }
 
@@ -40,20 +41,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <Routes>
-          <Route index element={<Home />} />
-
-          {
-            getPagesPosts(routes).map(({ id, attributes }) => (
-              <Route key={id} path={`/${attributes.slug}`} element={<PostsPage id={id} key={id} />} />
-            ))
-          }
-          {
-            getPages(routes).map(({ id, attributes }) => (
-              <Route key={id} path={`/${attributes.slug}`} element={<Page id={id} key={id} />} />
-            ))
-          }
-        </Routes>
+        <Outlet />
       <Footer />
     </div>
   );
