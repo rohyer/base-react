@@ -25,6 +25,8 @@ const Page = ({ id }) => {
     }
 
     fetchData();
+
+    window.scrollTo(0, 0)
   }, [id]);
 
   return (

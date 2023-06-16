@@ -1,7 +1,7 @@
 import './PostsPage.css';
 import React, { useEffect, useState } from 'react';
 import { Container, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
 const headers = {
@@ -24,9 +24,9 @@ const PostsPage = ({ id }) => {
     }
 
     fetchData();
-  }, [id]);
 
-  console.log(page);
+    window.scrollTo(0, 0)
+  }, [id]);
 
   return (
     <div className="posts-page">
@@ -44,6 +44,8 @@ const PostsPage = ({ id }) => {
       <Container fixed>
         <Button className="back-btn" variant="contained" color="inherit" onClick={() => navigate(-1)}>Voltar</Button>
       </Container>
+
+      <Outlet />
     </div>
   )
 }
